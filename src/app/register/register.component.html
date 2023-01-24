@@ -1,0 +1,99 @@
+<div class="registerbody">
+    <div class="registercontent">
+        <form #f="ngForm" (ngSubmit)="onSubmit(f)" [appMatchPassword]="['password', 'confirmpassword']">
+            <h3>Register</h3>
+            <div class="register">
+                <div class="registerfirst">
+                    <div class="position-relative">
+                        <label for="fullname">Fullname</label>
+                        <input type="text" name="fullname" class="form-control" autocomplete="off" #fullname="ngModel"
+                            [(ngModel)]="model.fullname" minlength="3" maxlength="30"
+                            [class.is-valid]="fullname.valid && (fullname.dirty || fullname.touched)"
+                            pattern="^[a-zA-Z]+$" required>
+                        <span class="form-control-feedback position-absolute"
+                            *ngIf="fullname.errors && (fullname.dirty || fullname.touched)">
+                            <span *ngIf="fullname.errors['required']">Fullname is Required</span>
+                            <span *ngIf="fullname.errors['pattern']">
+                                Please enter letter only
+                            </span>
+                        </span>
+                    </div>
+                    <div class="position-relative">
+                        <label for="email">Email</label>
+                        <input type="email" name="email" class="form-control" #email="ngModel" [(ngModel)]="model.email"
+                            [class.is-valid]="email.valid && (email.dirty || email.touched)" autocomplete="off"
+                            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
+                        <span class="form-control-feedback position-absolute"
+                            *ngIf="email.errors && (email.dirty || email.touched)">
+                            <span *ngIf="email.errors['required']">Email is required</span>
+                            <span *ngIf="email.errors['pattern']">
+                                Enter a valid Email
+                            </span>
+                        </span>
+                    </div>
+                    <div class="position-relative">
+                        <label for="password">Password</label>
+                        <input type="password" name="password" class="form-control" autocomplete="off"
+                            #password="ngModel" [(ngModel)]="model.password" minlength="6" maxlength="20"
+                            [class.is-valid]="password.valid && (password.dirty || password.touched)"
+                            pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,16}"
+                            required>
+                        <span class="form-control-feedback position-absolute"
+                            *ngIf="password.errors && (password.dirty || password.touched)">
+                            <span *ngIf="password.errors['required']">Password is Required</span>
+                            <span *ngIf="password.errors['pattern']">
+                                Please enter Valid Password
+                            </span>
+                        </span>
+                    </div>
+                </div>
+                <div class="position-relative">
+                    <div>
+                        <label for="username">Username</label>
+                        <input type="text" name="username" class="form-control" autocomplete="off" #username="ngModel"
+                            [(ngModel)]="model.username" minlength="3" maxlength="30"
+                            [class.is-valid]="username.valid && (username.dirty || username.touched)"
+                            pattern="^[a-zA-Z]+$" required>
+                        <span class="form-control-feedback position-absolute"
+                            *ngIf="username.errors && (username.dirty || username.touched)">
+                            <span *ngIf="username.errors['required']">Username is Required</span>
+                            <span *ngIf="username.errors['pattern']">
+                                Please enter letter only
+                            </span>
+                        </span>
+                    </div>
+                    <div class="position-relative">
+                        <label for="number">Mobile</label>
+                        <input type="number" name="mobile" class="form-control" #mobile="ngModel"
+                            [(ngModel)]="model.mobile"
+                            [class.is-valid]="mobile.valid && (mobile.dirty || mobile.touched)" autocomplete="off"
+                            pattern="^((\\+91-?)|0)?[6-9]{1}[0-9]{9}$" required>
+                        <span class="form-control-feedback position-absolute"
+                            *ngIf="mobile.errors && (mobile.dirty || mobile.touched)">
+                            <span *ngIf="mobile.errors['required']">Mobile is required</span>
+                            <span *ngIf="mobile.errors['pattern']">
+                                Enter a valid Mobile
+                            </span>
+                        </span>
+                    </div>
+                    <div class="position-relative">
+                        <label for="confirmpassword">ConfirmPassword</label>
+                        <input type="password" name="confirmpassword" class="form-control" autocomplete="off"
+                            #confirmpassword="ngModel" [(ngModel)]="model.confirmpassword"
+                            [class.is-valid]="confirmpassword.valid && (confirmpassword.dirty || confirmpassword.touched)"
+                            required>
+                        <span class="form-control-feedbacks position-absolute"
+                            *ngIf="confirmpassword.errors && (confirmpassword.dirty || confirmpassword.touched)">
+                            <span *ngIf="confirmpassword.errors['required']">Confirmpassword is Required</span>
+                            <span *ngIf="confirmpassword.errors['matching']">Password do not match</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="back">
+                <a href="">Back to Login</a>
+                <button type="submit">Register</button>
+            </div>
+        </form>
+    </div>
+</div>
